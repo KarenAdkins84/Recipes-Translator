@@ -1,3 +1,4 @@
+//Edamam API
 const options = {
 	method: 'GET',
 	headers: {
