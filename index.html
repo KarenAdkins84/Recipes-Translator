@@ -4,28 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Recipe Translator</title>
 </head>
 <body>
     <header>Chef Rosetta</header>
-    <!--Put banner here-->
+   
     <!--Add API symbols-->
     <div class="columns">
-        <!--Need two rows in each column-->
-        <!-- Create Tile or Container-->
         <div class="column">
-            <button>Search for a Recipe</button>
-            <!--Create form -->
+            <input class="input" type="text" placeholder="Search Recipe">
+            <button>Search</button>
             <div>Display Recipe Here</div>
-            <!--Create auto dropbox-->
+            <!--Create Card-->
         </div>
         <div class="column">
-        
-            <button>Translate</button>
+        <!--Change class to "dropdown is-active" in Javascript-->
+            <div class="dropdown is-active">
+                <div class="dropdown-trigger">
+                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                    <span>Choose Language</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                  <div class="dropdown-content">
+                    <a href="#" class="dropdown-item">
+                      Spanish
+                    </a>
+                    <a class="dropdown-item">
+                      French
+                    </a>
+                    <a href="#" class="dropdown-item is-active">
+                      Arabic
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      Mandarin
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      Russian
+                    </a>
+                  </div>
+                </div>
+              </div>
             <div>Show Translated Recipe Here</div>
-            <!--Create dropdown box for languages-->
-            <!-- Create Tile or Container-->
         </div>
     </div>
 <script src="./assets/script.js"></script>

@@ -1,3 +1,6 @@
-body{
-    display:flex;
+header{
+    background-color:darkgrey;
+    text-align: center;
+    margin-bottom:20px;
+
 }
