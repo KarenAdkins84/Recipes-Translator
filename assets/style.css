@@ -1,6 +1,9 @@
 header{
-    background-color:darkgrey;
+    background-image:gray;
     text-align: center;
     margin-bottom:20px;
+    padding: 20px;
+    border: solid 2px silver;
+
 
 }
