@@ -1,3 +1,7 @@
+//vaiables targetting DOM elements
+
+const notTranslated = document.querySelector('#notTranslated');
+
 
 function getAPIRecipe () {
 	const options = {
@@ -33,7 +37,29 @@ function getAPITranslate () {
 
 };
 
+function getREcipeList () {
+	const options = {
+		method: 'GET',
+		headers: {
+			'X-RapidAPI-Key': '58a7ac407amsh3758280bd01fa5ap112821jsn3df462a4e577',
+			'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+		}
+	};
+	
+	fetch('https://tasty.p.rapidapi.com/recipes/get-more-info?id=8138', options)
+		.then(response => response.json())
+		.then( recipe => {
+			console.log(recipe)
+			for(i = 0; i<recipe.instructions.length; i++){
+				let fullRecipe = recipe.instructions[i].display_text
+				console.log(fullRecipe)
+				notTranslated.innerHTML = '<p>'+fullRecipe+'</p>'
+			}
+		})
+		.catch(err => console.error(err));
+}
 
 
 getAPIRecipe();
 getAPITranslate();
+getREcipeList();
