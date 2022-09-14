@@ -1,4 +1,4 @@
-function getAPIRecipe () {
+function getAPIRecipe (inputValue) {
 	const options = {
 		method: 'GET',
 		headers: {
@@ -7,28 +7,32 @@ function getAPIRecipe () {
 		}
 	};
 	
-	fetch('https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=chicken%20soup', options)
+	fetch('https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=' + inputValue, options)
+		.then(response => response.json())
+		.then(response => {
+			populateRecipeResults(response)
+		})
+		.catch(err => console.error(err));
+
+}
+
+function getAPITranslate(){
+	const options = {
+		method: 'POST',
+		headers: {
+		'content-type': 'application/json',
+		'X-RapidAPI-Key': 'e20ceaa727msh1f834017aded922p19f4d1jsn26f28a840a3c',
+		'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
+		},
+		body: '{"text":"Language selection.","source":"en","target":"es"}'
+	};
+
+	fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
 		.then(response => response.json())
 		.then(response => console.log(response))
 		.catch(err => console.error(err));
 
 }
-
-const options = {
-	method: 'POST',
-	headers: {
-		'content-type': 'application/json',
-		'X-RapidAPI-Key': 'e20ceaa727msh1f834017aded922p19f4d1jsn26f28a840a3c',
-		'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
-	},
-	body: '{"text":"Language selection.","source":"en","target":"es"}'
-};
-
-fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
-
 
 var dropdown = document.querySelector('.dropdown');
 dropdown.addEventListener('click', function(event) {
@@ -60,6 +64,31 @@ function getRecipe () {
 		.catch(err => console.error(err));
 }
 
+const search= document.getElementById("search")
+search.addEventListener("click", searchRecipe)
+let searchInput= document.getElementById("searchInput")
 
-getAPIRecipe();
+function searchRecipe(){
+	let inputValue= searchInput.value.trim()
+	console.log(searchInput)
+	getAPIRecipe(inputValue)
+
+}
+
+function populateRecipeResults(response){
+	
+	for(i=1; i<response.results.length; i++){
+		let recipeResults= document.createElement("button")
+		recipeResults.textContent= recipe.results[i].search_value;
+		let buttonBox=document.querySelector('#buttonBox');
+		buttonBox.appendChild(recipeResults);
+
+
+	}
+}
+
+
+
+//getAPIRecipe();
+getAPITranslate();
 getRecipe();
