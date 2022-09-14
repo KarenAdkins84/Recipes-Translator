@@ -2,18 +2,24 @@ function getAPIRecipe (inputValue) {
 	const options = {
 		method: 'GET',
 		headers: {
-			'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
-			'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+			'X-RapidAPI-Key': '1f4028efdbmshbe7a88de4a624b0p138246jsnde0a0e24dee3',
+			'X-RapidAPI-Host': 'recipesapi2.p.rapidapi.com'
 		}
 	};
 	
-	fetch('https://tasty.p.rapidapi.com/recipes/auto-complete?prefix=' + inputValue, options)
-		.then(response => response.json())
-		.then(response => {
-			populateRecipeResults(response)
-			console.log(response)
+	fetch('https://recipesapi2.p.rapidapi.com/recipes/'+ inputValue +'?maxRecipes=2', options)
+		.then(resultsRecipe => resultsRecipe.json())
+		.then(resultsRecipe => { 
+			console.log(resultsRecipe)
+		let directions = resultsRecipe.data[0].instructions
+		console.log(directions)
+		getRecipe(directions)
+		
+		let buttonRecipe = resultsRecipe.data
+		populateRecipeResults(buttonRecipe)
+
 		})
-		.catch(err => console.error(err));
+		
 
 }
 
@@ -41,29 +47,16 @@ dropdown.addEventListener('click', function(event) {
   dropdown.classList.toggle('is-active');
 });
 
-function getRecipe () {
-	const options = {
-		method: 'GET',
-		headers: {
-			'X-RapidAPI-Key': '58a7ac407amsh3758280bd01fa5ap112821jsn3df462a4e577',
-			'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-		}
-	};
-	
-	fetch('https://tasty.p.rapidapi.com/recipes/get-more-info?id=8138', options)
-		.then(recipe => recipe.json())
-		.then(recipe => {
-			for(i=0; i<recipe.instructions.length; i++) {
-				let instructions = document.createElement('p');
-				instructions.textContent = recipe.instructions[i].display_text;
-				console.log(recipe.instructions[i]);
-				let notTranslated = document.querySelector('#notTranslated')
-				notTranslated.appendChild(instructions);
-			}
+function getRecipe (directions) {
+	for(i=0; i<directions.length; i++) {
+	let instructions = document.createElement('p');
+	instructions.textContent = directions[i];
+	console.log(directions[i]);
+	let notTranslated = document.querySelector('#notTranslated')
+	notTranslated.appendChild(instructions);
+	}
 
-		})
-		.catch(err => console.error(err));
-}
+	}
 
 const search= document.getElementById("search")
 search.addEventListener("click", searchRecipe)
@@ -77,14 +70,14 @@ function searchRecipe(){
 
 }
 
-function populateRecipeResults(response){
+function populateRecipeResults(buttonRecipe){
 	
 	for(i=1; i<6; i++){
 		let recipeResults= document.createElement("button")
-		recipeResults.textContent= response.results[i].search_value;
+		recipeResults.textContent= buttonRecipe[i].name;
 		let buttonBox=document.querySelector('#buttonBox');
 		buttonBox.appendChild(recipeResults);
-		let chosenRecipe = response.results[i].search_value;
+		
 
 
 	}
