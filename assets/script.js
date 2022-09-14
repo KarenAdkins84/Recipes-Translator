@@ -62,5 +62,4 @@ function getRecipe () {
 
 
 getAPIRecipe();
-getAPITranslate();
 getRecipe();
