@@ -1,4 +1,3 @@
-
 function getAPIRecipe () {
 	const options = {
 		method: 'GET',
@@ -15,23 +14,21 @@ function getAPIRecipe () {
 
 }
 
-function getAPITranslate () {
-	const options = {
-		method: 'POST',
-		headers: {
-			'content-type': 'application/json',
-			'X-RapidAPI-Key': '1f4028efdbmshbe7a88de4a624b0p138246jsnde0a0e24dee3',
-			'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
-		},
-		body: '{"text":"Language selection.","source":"en","target":"es"}'
-	};
-	
-	fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
-		.then(response => response.json())
-		.then(response => console.log(response))
-		.catch(err => console.error(err))
-
+const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/json',
+		'X-RapidAPI-Key': 'e20ceaa727msh1f834017aded922p19f4d1jsn26f28a840a3c',
+		'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
+	},
+	body: '{"text":"Language selection.","source":"en","target":"es"}'
 };
+
+fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
 
 var dropdown = document.querySelector('.dropdown');
 dropdown.addEventListener('click', function(event) {
