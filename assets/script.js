@@ -39,8 +39,31 @@ dropdown.addEventListener('click', function(event) {
   dropdown.classList.toggle('is-active');
 });
 
+function getRecipe () {
+	const options = {
+		method: 'GET',
+		headers: {
+			'X-RapidAPI-Key': '58a7ac407amsh3758280bd01fa5ap112821jsn3df462a4e577',
+			'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+		}
+	};
+	
+	fetch('https://tasty.p.rapidapi.com/recipes/get-more-info?id=8138', options)
+		.then(recipe => recipe.json())
+		.then(recipe => {
+			for(i=0; i<recipe.instructions.length; i++) {
+				let instructions = document.createElement('p');
+				instructions.textContent = recipe.instructions[i].display_text;
+				console.log(recipe.instructions[i]);
+				let notTranslated = document.querySelector('#notTranslated')
+				notTranslated.appendChild(instructions);
+			}
 
+		})
+		.catch(err => console.error(err));
+}
 
 
 getAPIRecipe();
 getAPITranslate();
+getRecipe();
