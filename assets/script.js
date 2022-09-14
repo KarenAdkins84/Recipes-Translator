@@ -70,7 +70,7 @@ let searchInput= document.getElementById("searchInput")
 
 function searchRecipe(){
 	let inputValue= searchInput.value.trim()
-	console.log(searchInput)
+	console.log(inputValue)
 	getAPIRecipe(inputValue)
 
 }
