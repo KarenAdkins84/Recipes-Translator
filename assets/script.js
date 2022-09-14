@@ -70,6 +70,7 @@ search.addEventListener("click", searchRecipe)
 let searchInput= document.getElementById("searchInput")
 
 function searchRecipe(){
+
 	let inputValue= searchInput.value
 	console.log(inputValue)
 	getAPIRecipe(inputValue)
