@@ -11,6 +11,7 @@ function getAPIRecipe (inputValue) {
 		.then(response => response.json())
 		.then(response => {
 			populateRecipeResults(response)
+			console.log(response)
 		})
 		.catch(err => console.error(err));
 
@@ -69,26 +70,25 @@ search.addEventListener("click", searchRecipe)
 let searchInput= document.getElementById("searchInput")
 
 function searchRecipe(){
-	let inputValue= searchInput.value.trim()
-	console.log(searchInput)
+	let inputValue= searchInput.value
+	console.log(inputValue)
 	getAPIRecipe(inputValue)
 
 }
 
 function populateRecipeResults(response){
 	
-	for(i=1; i<response.results.length; i++){
+	for(i=1; i<6; i++){
 		let recipeResults= document.createElement("button")
-		recipeResults.textContent= recipe.results[i].search_value;
+		recipeResults.textContent= response.results[i].search_value;
 		let buttonBox=document.querySelector('#buttonBox');
 		buttonBox.appendChild(recipeResults);
+		let chosenRecipe = response.results[i].search_value;
 
 
 	}
 }
 
 
-
-//getAPIRecipe();
+getAPIRecipe();
 getAPITranslate();
-getRecipe();
