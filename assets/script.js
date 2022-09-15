@@ -1,5 +1,6 @@
 inputValue = ""
 let instructions = document.createElement('p');
+const translated = document.querySelector('#translated')
 
 function getAPIRecipe (inputValue) {
 	const options = {
@@ -19,6 +20,7 @@ function getAPIRecipe (inputValue) {
 		//getRecipe(directions)
 		
 		let buttonRecipe = resultsRecipe.data
+		console.log(buttonRecipe)
 		populateRecipeResults(buttonRecipe)
 
 		})
@@ -26,20 +28,27 @@ function getAPIRecipe (inputValue) {
 
 }
 
-function getAPITranslate(){
+function getAPITranslate(recipeInstructions){
 	const options = {
 		method: 'POST',
 		headers: {
-		'content-type': 'application/json',
-		'X-RapidAPI-Key': 'e20ceaa727msh1f834017aded922p19f4d1jsn26f28a840a3c',
-		'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
+			'content-type': 'application/json',
+			'X-RapidAPI-Key': '58a7ac407amsh3758280bd01fa5ap112821jsn3df462a4e577',
+			'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
 		},
-		body: '{"text":"Language selection.","source":"en","target":"es"}'
+		body: '{"text":"'+recipeInstructions+'","source":"en","target":"es"}'
 	};
-
+	
 	fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
 		.then(response => response.json())
-		.then(response => console.log(response))
+		.then(response => {
+			console.log(response);
+			let instructionsTrans = document.createElement('p');
+			instructionsTrans.textContent = response.text;
+			translated.appendChild(instructionsTrans);
+			
+		})
+
 		.catch(err => console.error(err));
 
 }
@@ -99,7 +108,7 @@ function populateRecipeResults(buttonRecipe){
 			getRecipe(recipeInstructions)
 		})
 		
-
+		getAPITranslate(recipeInstructions)
 
 	}
 }
