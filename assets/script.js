@@ -1,3 +1,6 @@
+inputValue = ""
+let instructions = document.createElement('p');
+
 function getAPIRecipe (inputValue) {
 	const options = {
 		method: 'GET',
@@ -12,8 +15,8 @@ function getAPIRecipe (inputValue) {
 		.then(resultsRecipe => { 
 			console.log(resultsRecipe)
 		let directions = resultsRecipe.data[0].instructions
-		console.log(directions)
-		getRecipe(directions)
+		//console.log(directions)
+		//getRecipe(directions)
 		
 		let buttonRecipe = resultsRecipe.data
 		populateRecipeResults(buttonRecipe)
@@ -47,11 +50,11 @@ dropdown.addEventListener('click', function(event) {
   dropdown.classList.toggle('is-active');
 });
 
-function getRecipe (directions) {
-	for(i=0; i<directions.length; i++) {
+function getRecipe (recipeInstructions) {
+	for(i=0; i<recipeInstructions.length; i++) {
 	let instructions = document.createElement('p');
-	instructions.textContent = directions[i];
-	console.log(directions[i]);
+	instructions.textContent = recipeInstructions[i];
+	console.log(recipeInstructions[i]);
 	let notTranslated = document.querySelector('#notTranslated')
 	notTranslated.appendChild(instructions);
 	}
@@ -61,12 +64,22 @@ function getRecipe (directions) {
 const search= document.getElementById("search")
 search.addEventListener("click", searchRecipe)
 let searchInput= document.getElementById("searchInput")
+let buttonBox=document.querySelector('#buttonBox');
+
+let notTranslated = document.querySelector('#notTranslated')
 
 function searchRecipe(){
 
-	let inputValue= searchInput.value
+	let inputValue= searchInput.value.trim()
+
+	if(inputValue) {
 	console.log(inputValue)
 	getAPIRecipe(inputValue)
+	notTranslated.innerHTML = ""
+	buttonBox.innerHTML = ""
+	} else{
+		console.log('it works')
+	}
 
 }
 
@@ -74,9 +87,17 @@ function populateRecipeResults(buttonRecipe){
 	
 	for(i=1; i<6; i++){
 		let recipeResults= document.createElement("button")
+		recipeResults.setAttribute('id', 'recipeButton') 
 		recipeResults.textContent= buttonRecipe[i].name;
 		let buttonBox=document.querySelector('#buttonBox');
 		buttonBox.appendChild(recipeResults);
+
+		let recipeInstructions = buttonRecipe[i].instructions
+
+		recipeResults.addEventListener( 'click', function (){
+			instructions.textContent = ''
+			getRecipe(recipeInstructions)
+		})
 		
 
 
@@ -84,5 +105,5 @@ function populateRecipeResults(buttonRecipe){
 }
 
 
-getAPIRecipe();
+//getAPIRecipe();
 getAPITranslate();
