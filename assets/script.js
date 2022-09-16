@@ -6,11 +6,13 @@ const notTranslated = document.querySelector('#notTranslated')
 
 
 
+
 search.addEventListener("click", searchRecipe)
 
 function searchRecipe(){
 
     let inputValue= searchInput.value.trim()
+    localStorage.setItem(inputValue, inputValue);
 
 
     if(inputValue) {
