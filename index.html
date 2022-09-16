@@ -18,7 +18,7 @@
     <div class="column is-quarter">
       <div class="box">
         <input class="input" id="searchInput" type="text" placeholder="Search Recipe">
-        <button id="search">Search</button>
+        <button class = "button" id="search">Search</button>
         <div class="box" id="buttonBox"></div>
         <div class="card-content">
           <div class="content" id="notTranslated">
@@ -28,45 +28,18 @@
   </div>
   <div class="column is-quarter">
     <div class="box">
-      <div class="dropdown">
-        <!--Change class to "dropdown is-active" in Javascript-->
-        <div class="dropdown-trigger">
-          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-            <span>Choose Language</span>
-            <span class="icon is-small">
-              <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-        </div>
-        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-          <div class="dropdown-content">
-            <a href="#" class="dropdown-item" id="es">
-              Spanish
-            </a>
-            <a href="#" class="dropdown-item" id="fr">
-              French
-            </a>
-            <a href="#" class="dropdown-item" id="tr">
-              Turkish
-            </a>
-            <a href="#" class="dropdown-item" id="zh">
-              Mandarin
-            </a>
-            <a href="#" class="dropdown-item" id="ru">
-              Russian
-            </a>
-          </div>
-        </div>
-      </div>
       <div class="card-content">
-        <div class="content" id="translated"></div>
+        <div class="content" id="translated">Watch your recipe be translated to Spanish.</div>
       </div>
     </div>
   </div>
 </div>  
-<footer>
-  <p>Created with Bulma, Recipe API, and DeepL Translator</p>
-  <p>Enjoy. Salud. Bon Appétit. Afiyet Olsun. 吃好喝好. приятного аппетита.</p>
+<footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        Created with Bulma, Recipe API, and DeepL Translator
+      </p>
+    </div>
 </footer>
 
     
