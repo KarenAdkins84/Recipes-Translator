@@ -13,7 +13,7 @@ spanish.addEventListener("click", function(){
 	let language = "es"
 })
 
-
+//this fuction fetches data from the API
 function getAPIRecipe (inputValue) {
 	const options = {
 		method: 'GET',
@@ -27,7 +27,7 @@ function getAPIRecipe (inputValue) {
 		.then(resultsRecipe => resultsRecipe.json())
 		.then(resultsRecipe => { 
 			console.log(resultsRecipe)
-		let directions = resultsRecipe.data[0].instructions
+		//let directions = resultsRecipe.data[0].instructions
 		//console.log(directions)
 		//getRecipe(directions)
 		
@@ -45,7 +45,7 @@ function getAPITranslate(recipeInstructions,language ){
 		method: 'POST',
 		headers: {
 			'content-type': 'application/json',
-			'X-RapidAPI-Key': 'ad3138270amsh5aed76a88a48950p17791cjsn8aab4633eda6',
+			'X-RapidAPI-Key': '09f51f2e88mshe7d0cb8ff688c76p13052fjsnd54582cf0ff0',
 			'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
 		},
 		body: '{"text":"'+recipeInstructions+'","source":"en","target":"'+language+'"}'
@@ -55,7 +55,7 @@ function getAPITranslate(recipeInstructions,language ){
 		.then(response => response.json())
 		.then(response => {
 			console.log(response);
-            search.addEventListener
+            //search.addEventListener
             let instructionsTrans = document.createElement('p');
             instructionsTrans.textContent = response.text;
             translated.appendChild(instructionsTrans);
@@ -77,14 +77,14 @@ function getRecipe (recipeInstructions) {
 	}
 
 	}
-
+//variables for search box and search button
 const search= document.getElementById("search")
 search.addEventListener("click", searchRecipe)
 let searchInput= document.getElementById("searchInput")
 let buttonBox=document.querySelector('#buttonBox');
 
 let notTranslated = document.querySelector('#notTranslated')
-
+//this takes the user input and defines the search term
 function searchRecipe(){
 
 	let inputValue= searchInput.value.trim()
@@ -99,7 +99,7 @@ function searchRecipe(){
 	}
 
 }
-
+//this function takes the data and creates recipe buttons for user to choose from
 function populateRecipeResults(buttonRecipe){
 	
 	for(i=1; i<6; i++){
@@ -116,10 +116,9 @@ function populateRecipeResults(buttonRecipe){
 			getRecipe(recipeInstructions)
 			getAPITranslate(recipeInstructions)
 		})
-		
+	} 
+	let language = "";
 
-
-	}
 }
 
 var dropdown = document.querySelector('.dropdown');
