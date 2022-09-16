@@ -1,17 +1,19 @@
 inputValue = ""
 let instructions = document.createElement('p');
-const translated = document.querySelector('#translated')
+
+language = "es"
+/*const translated = document.querySelector('#translated')
 const spanish = document.querySelector("#es");
 const french = document.querySelector("#fr");
 const turkish = document.querySelector("#tr");
 const mandarin = document.querySelector("#zh");
-const russian = document.querySelector("#ru");
+const russian = document.querySelector("#ru");*/
 
 
-spanish.addEventListener("click", function(){
+/*spanish.addEventListener("click", function(){
 	spanish.setAttribute("class","is-active");
 	let language = "es"
-})
+})*/
 
 
 function getAPIRecipe (inputValue) {
