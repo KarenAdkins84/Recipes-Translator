@@ -56,7 +56,6 @@ function getAPITranslate(recipeInstructions,language ){
 		.then(response => console.log(response))
 
 	
-
 		.catch(err => console.error(err));
 
 		console.log(response);
