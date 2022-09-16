@@ -20,7 +20,7 @@ The end goal of this application is to manipulate the "DeepL Translator API" to 
 ## Screenshot
 
 ## Collaborators
-Karen Adkins:
+Karen Adkins:https://github.com/KarenAdkins84
 Leah Choco:
 Grant Ellington:
 Elham Hamzapour:
