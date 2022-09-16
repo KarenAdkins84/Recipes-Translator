@@ -1,6 +1,7 @@
 inputValue = ""
 let instructions = document.createElement('p');
 const translated = document.querySelector('#translated')
+let language = "es"
 
 function getAPIRecipe (inputValue) {
 	const options = {
@@ -28,12 +29,12 @@ function getAPIRecipe (inputValue) {
 
 }
 
-function getAPITranslate(recipeInstructions){
+function getAPITranslate(recipeInstructions, ){
 	const options = {
 		method: 'POST',
 		headers: {
 			'content-type': 'application/json',
-			'X-RapidAPI-Key': '58a7ac407amsh3758280bd01fa5ap112821jsn3df462a4e577',
+			'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
 			'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
 		},
 		body: '{"text":"'+recipeInstructions+'","source":"en","target":"es"}'
@@ -43,12 +44,11 @@ function getAPITranslate(recipeInstructions){
 		.then(response => response.json())
 		.then(response => {
 			console.log(response);
+			search.addEventListener
 			let instructionsTrans = document.createElement('p');
 			instructionsTrans.textContent = response.text;
 			translated.appendChild(instructionsTrans);
-			
 		})
-
 		.catch(err => console.error(err));
 
 }
@@ -115,4 +115,4 @@ function populateRecipeResults(buttonRecipe){
 
 
 //getAPIRecipe();
-getAPITranslate();
+//getAPITranslate();
