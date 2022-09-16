@@ -5,25 +5,21 @@ const buttonBox=document.querySelector('#buttonBox');
 const notTranslated = document.querySelector('#notTranslated')
 
 
-
+var inputValue = localStorage.getItem('inputvalue')
 
 search.addEventListener("click", searchRecipe)
 
 function searchRecipe(){
 
-    let inputValue= searchInput.value.trim()
-    localStorage.setItem("inputValue", inputValue);
-	let prevSearch = localStorage.getItem("inputValue");
-	console.log(prevSearch)
-	//localStorage.getItem("inputValue");
-	//console.log(localStorage)
-
+    var inputValue= searchInput.value.trim()
+    localStorage.setItem('inputValue', inputValue);
 
     if(inputValue) {
     console.log(inputValue)
     getAPIRecipe(inputValue)
     notTranslated.innerHTML = ""
     buttonBox.innerHTML = ""
+	searchInput.innerHTML = ""
 	notTranslated.innerHTML = '<div class="loader"></div>'
     } else{
         console.log('it works')
@@ -34,7 +30,7 @@ function getAPIRecipe (inputValue) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '1f4028efdbmshbe7a88de4a624b0p138246jsnde0a0e24dee3',
+            'X-RapidAPI-Key': '58a7ac407amsh3758280bd01fa5ap112821jsn3df462a4e577',
             'X-RapidAPI-Host': 'recipesapi2.p.rapidapi.com'
         }
     };
