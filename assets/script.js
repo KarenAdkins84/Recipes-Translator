@@ -6,6 +6,11 @@ const notTranslated = document.querySelector('#notTranslated')
 
 
 var inputValue = localStorage.getItem('inputvalue')
+let prevSearch = localStorage.getItem("inputValue");
+searchInput.value = prevSearch;
+	console.log(prevSearch)
+    
+
 
 search.addEventListener("click", searchRecipe)
 
@@ -13,7 +18,7 @@ function searchRecipe(){
 
     var inputValue= searchInput.value.trim()
     localStorage.setItem('inputValue', inputValue);
-
+    
     if(inputValue) {
     console.log(inputValue)
     getAPIRecipe(inputValue)
