@@ -22,7 +22,7 @@ The end goal of this application is to manipulate the "DeepL Translator API" to 
 ## Collaborators
 Karen Adkins:https://github.com/KarenAdkins84
 
-Leah Choco:
+Leah Choco:https://github.com/leah-choco
 
 Grant Ellington:https://github.com/Grant-Ellington
 
