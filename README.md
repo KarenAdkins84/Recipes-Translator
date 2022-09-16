@@ -21,6 +21,9 @@ The end goal of this application is to manipulate the "DeepL Translator API" to 
 
 ## Collaborators
 Karen Adkins:
+
 Leah Choco:
+
 Grant Ellington:
-Elham Hamzapour:
+
+Elham Hamzapour:https://github.com/ehamzapour
