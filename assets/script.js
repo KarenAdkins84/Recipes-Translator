@@ -53,17 +53,17 @@ function getAPITranslate(recipeInstructions,language ){
 	
 	fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
 		.then(response => response.json())
-		.then(response => console.log(response))
-
-	
-		.catch(err => console.error(err));
-
-		console.log(response);
+		.then(response => {
+			console.log(response);
             search.addEventListener
             let instructionsTrans = document.createElement('p');
             instructionsTrans.textContent = response.text;
             translated.appendChild(instructionsTrans);
 
+		})
+		.catch(err => console.error(err));
+
+	
 }
 
 
