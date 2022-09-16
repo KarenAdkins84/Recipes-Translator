@@ -25,5 +25,7 @@ header{
     position:static;
 }
 
-
+#translated {
+    text-align: center;
+}
 
