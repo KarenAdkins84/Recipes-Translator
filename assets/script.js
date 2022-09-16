@@ -18,6 +18,7 @@ function searchRecipe(){
     getAPIRecipe(inputValue)
     notTranslated.innerHTML = ""
     buttonBox.innerHTML = ""
+	searchInput.innerHTML = ""
 	notTranslated.innerHTML = '<div class="loader"></div>'
     } else{
         console.log('it works')
