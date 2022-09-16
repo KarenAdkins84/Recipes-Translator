@@ -12,6 +12,7 @@ function searchRecipe(){
 
     let inputValue= searchInput.value.trim()
 
+
     if(inputValue) {
     console.log(inputValue)
     getAPIRecipe(inputValue)
@@ -50,6 +51,7 @@ function populateRecipeResults(buttonRecipe){
     for(i=0; i<buttonRecipe.length; i++){
         let recipeResults= document.createElement("button")
         recipeResults.setAttribute('id', 'recipeButton'+ [i]) 
+		recipeResults.setAttribute('class', 'button')
         recipeResults.textContent= buttonRecipe[i].name;
         buttonBox.appendChild(recipeResults);
     }
