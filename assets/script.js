@@ -1,7 +1,18 @@
 inputValue = ""
 let instructions = document.createElement('p');
 const translated = document.querySelector('#translated')
-let language = "es"
+const spanish = document.querySelector("#es");
+const french = document.querySelector("#fr");
+const turkish = document.querySelector("#tr");
+const mandarin = document.querySelector("#zh");
+const russian = document.querySelector("#ru");
+
+
+spanish.addEventListener("click", function(){
+	spanish.setAttribute("class","is-active");
+	let language = "es"
+})
+
 
 function getAPIRecipe (inputValue) {
 	const options = {
@@ -29,35 +40,32 @@ function getAPIRecipe (inputValue) {
 
 }
 
-function getAPITranslate(recipeInstructions, ){
+function getAPITranslate(recipeInstructions,language ){
 	const options = {
 		method: 'POST',
 		headers: {
 			'content-type': 'application/json',
-			'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
+			'X-RapidAPI-Key': 'ad3138270amsh5aed76a88a48950p17791cjsn8aab4633eda6',
 			'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
 		},
-		body: '{"text":"'+recipeInstructions+'","source":"en","target":"es"}'
+		body: '{"text":"'+recipeInstructions+'","source":"en","target":"'+language+'"}'
 	};
 	
 	fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
 		.then(response => response.json())
-		.then(response => {
-			console.log(response);
-			search.addEventListener
-			let instructionsTrans = document.createElement('p');
-			instructionsTrans.textContent = response.text;
-			translated.appendChild(instructionsTrans);
-		})
+		.then(response => console.log(response))
+
+	
 		.catch(err => console.error(err));
+
+		console.log(response);
+            search.addEventListener
+            let instructionsTrans = document.createElement('p');
+            instructionsTrans.textContent = response.text;
+            translated.appendChild(instructionsTrans);
 
 }
 
-var dropdown = document.querySelector('.dropdown');
-dropdown.addEventListener('click', function(event) {
-  event.stopPropagation();
-  dropdown.classList.toggle('is-active');
-});
 
 function getRecipe (recipeInstructions) {
 	for(i=0; i<recipeInstructions.length; i++) {
@@ -106,12 +114,19 @@ function populateRecipeResults(buttonRecipe){
 		recipeResults.addEventListener( 'click', function (){
 			instructions.textContent = ''
 			getRecipe(recipeInstructions)
+			getAPITranslate(recipeInstructions)
 		})
 		
-		getAPITranslate(recipeInstructions)
+
 
 	}
 }
+
+var dropdown = document.querySelector('.dropdown');
+dropdown.addEventListener('click', function(event) {
+  event.stopPropagation();
+  dropdown.classList.toggle('is-active');
+});
 
 
 //getAPIRecipe();
