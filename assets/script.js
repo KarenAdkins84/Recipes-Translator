@@ -12,7 +12,11 @@ search.addEventListener("click", searchRecipe)
 function searchRecipe(){
 
     let inputValue= searchInput.value.trim()
-    localStorage.setItem(inputValue, inputValue);
+    localStorage.setItem("inputValue", inputValue);
+	let prevSearch = localStorage.getItem("inputValue");
+	console.log(prevSearch)
+	//localStorage.getItem("inputValue");
+	//console.log(localStorage)
 
 
     if(inputValue) {
