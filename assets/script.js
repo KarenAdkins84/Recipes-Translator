@@ -151,7 +151,7 @@ function displayTranslated0(recipeInstructions0) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': '12bc41dbfamsha19f5861d67decap1c7dd2jsn2fe1ff0fdb62',
+                'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
             body: '{"text":"'+recipeInstructions0+'","source":"en","target":"es"}'
@@ -190,7 +190,7 @@ function displayTranslated1(recipeInstructions1) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
+                'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
             body: '{"text":"'+recipeInstructions1+'","source":"en","target":"es"}'
@@ -229,7 +229,7 @@ function displayTranslated2(recipeInstructions2) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
+                'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
             body: '{"text":"'+recipeInstructions2+'","source":"en","target":"es"}'
@@ -269,7 +269,7 @@ function displayTranslated3(recipeInstructions3) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
+                'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
             body: '{"text":"'+recipeInstructions3+'","source":"en","target":"es"}'
@@ -308,7 +308,7 @@ function displayTranslated4(recipeInstructions4) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
+                'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
             body: '{"text":"'+recipeInstructions4+'","source":"en","target":"es"}'
@@ -347,7 +347,7 @@ function displayTranslated5(recipeInstructions5) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
+                'X-RapidAPI-Key': '49bd2d9a87msh820cee85c9b73abp1a58c4jsnafb238f3371d',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
             body: '{"text":"'+recipeInstructions5+'","source":"en","target":"es"}'
