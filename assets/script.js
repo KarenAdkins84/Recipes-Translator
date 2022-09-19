@@ -106,7 +106,7 @@ function displayTranslated(currentInstruction) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': 'ad3138270amsh5aed76a88a48950p17791cjsn8aab4633eda6',
+                'X-RapidAPI-Key': '12bc41dbfamsha19f5861d67decap1c7dd2jsn2fe1ff0fdb62',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
             body: '{"text":"'+currentInstruction+'","source":"en","target":"es"}'
