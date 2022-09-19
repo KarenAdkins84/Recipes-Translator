@@ -1,6 +1,6 @@
 # Chef Rosetta
 
-Deployed Application:
+Deployed Application: https://ehamzapour.github.io/Recipes-Translator/
 
 Chef Rosetta is an application that allows the user to search for recipes and then automatically translate the chosen recipe to Spanish. The name is a reference to the "Rosetta Stone".
 
