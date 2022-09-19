@@ -1,31 +1,24 @@
-
 const search= document.getElementById("search")
 const searchInput= document.getElementById("searchInput")
 const buttonBox=document.querySelector('#buttonBox');
 const notTranslated = document.querySelector('#notTranslated')
 
 
-var inputValue = localStorage.getItem('inputvalue')
-let prevSearch = localStorage.getItem("inputValue");
-searchInput.value = prevSearch;
-	console.log(prevSearch)
-    
-
 
 search.addEventListener("click", searchRecipe)
 
 function searchRecipe(){
 
-    var inputValue= searchInput.value.trim()
-    localStorage.setItem('inputValue', inputValue);
-    
+    let inputValue= searchInput.value.trim()
+    localStorage.setItem(inputValue, inputValue);
+
+
     if(inputValue) {
     console.log(inputValue)
     getAPIRecipe(inputValue)
     notTranslated.innerHTML = ""
     buttonBox.innerHTML = ""
-	searchInput.innerHTML = ""
-	notTranslated.innerHTML = '<div class="loader"></div>'
+    notTranslated.innerHTML = '<div class="loader"></div>'
     } else{
         console.log('it works')
     }
@@ -35,7 +28,7 @@ function getAPIRecipe (inputValue) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '58a7ac407amsh3758280bd01fa5ap112821jsn3df462a4e577',
+            'X-RapidAPI-Key': 'bcc66970f7mshce5cc06abea6b04p1c28d4jsn4fb037a20543',
             'X-RapidAPI-Host': 'recipesapi2.p.rapidapi.com'
         }
     };
@@ -44,118 +37,79 @@ function getAPIRecipe (inputValue) {
         .then(resultsRecipe => resultsRecipe.json())
         .then(resultsRecipe => { 
             console.log(resultsRecipe)
-			notTranslated.innerHTML = "";
-			let buttonRecipe = resultsRecipe.data
-			console.log(buttonRecipe)
-			populateRecipeResults(buttonRecipe)
+            notTranslated.innerHTML = "";
+            let buttonRecipe = resultsRecipe.data
+            console.log(buttonRecipe)
+            populateRecipeResults(buttonRecipe)
 
         })
         
 
 };
 
+
 function populateRecipeResults(buttonRecipe){
     for(i=0; i<buttonRecipe.length; i++){
+        const currentRecipe = buttonRecipe[i];
         let recipeResults= document.createElement("button")
         recipeResults.setAttribute('id', 'recipeButton'+ [i]) 
-		recipeResults.setAttribute('class', 'button')
+        recipeResults.setAttribute('class', 'button')
+        recipeResults.setAttribute('data-ingredients', JSON.stringify(currentRecipe.ingredients))
+        recipeResults.setAttribute('data-instructions', JSON.stringify(currentRecipe.instructions))
         recipeResults.textContent= buttonRecipe[i].name;
         buttonBox.appendChild(recipeResults);
+
+        recipeResults.addEventListener("click", function() {
+            notTranslated.innerHTML = '<div class="loader"></div>'
+            translated.innerHTML = '<div class="loader"></div>'
+            const ingredients = JSON.parse(this.getAttribute('data-ingredients'));
+            const instructions = JSON.parse(this.getAttribute('data-instructions'));
+            displayUntranslated(ingredients, instructions)
+        })
+    }
+    
+}
+
+function displayUntranslated(instructions, ingredients) {
+
+    notTranslated.innerHTML = "";
+
+    for(i=0; i < instructions.length; i++) {
+        let instruction = document.createElement('p');
+        instruction.textContent = instructions[i];
+        console.log(instructions[i]);
+        let notTranslated = document.querySelector('#notTranslated')
+        notTranslated.appendChild(instruction);
+
+        displayTranslated(instructions[i]);
     }
 
-        
-    let recipeButton0 = document.getElementById('recipeButton0')
-
-	if(recipeButton0){
-    let recipeInstructions0 = buttonRecipe[0].instructions
-    recipeButton0.addEventListener('click', function() {
-		notTranslated.innerHTML = '<div class="loader"></div>'
-		translated.innerHTML = '<div class="loader"></div>'
-        displayUntranslated0(recipeInstructions0)
-        displayTranslated0(recipeInstructions0)
-    })}
-
-
-    let recipeButton1 = document.getElementById('recipeButton1')
-	if(recipeButton1){
-    let recipeInstructions1 = buttonRecipe[1].instructions
-    recipeButton1.addEventListener('click', function() {
-		notTranslated.innerHTML = '<div class="loader"></div>'
-		translated.innerHTML = '<div class="loader"></div>'
-        displayUntranslated1(recipeInstructions1)
-        displayTranslated1(recipeInstructions1)
-    })}
-
-    let recipeButton2 = document.getElementById('recipeButton2')
-	if(recipeButton2){
-    let recipeInstructions2 = buttonRecipe[2].instructions
-    recipeButton2.addEventListener('click', function() {
-		notTranslated.innerHTML = '<div class="loader"></div>'
-		translated.innerHTML = '<div class="loader"></div>'
-        displayUntranslated2(recipeInstructions2)
-        displayTranslated2(recipeInstructions2)
-    })}
-
-    let recipeButton3 = document.getElementById('recipeButton3')
-	if(recipeButton3){
-    let recipeInstructions3 = buttonRecipe[3].instructions
-    recipeButton3.addEventListener('click', function() {
-		notTranslated.innerHTML = '<div class="loader"></div>'
-		translated.innerHTML = '<div class="loader"></div>'
-        displayUntranslated3(recipeInstructions3)
-        displayTranslated3(recipeInstructions3)
-    })}
-
-    let recipeButton4 = document.getElementById('recipeButton4')
-	if(recipeButton4){
-    let recipeInstructions4 = buttonRecipe[4].instructions
-    recipeButton4.addEventListener('click', function() {
-		notTranslated.innerHTML = '<div class="loader"></div>'
-		translated.innerHTML = '<div class="loader"></div>'
-        if(recipeInstructions4){
-        displayUntranslated4(recipeInstructions4)
-        displayTranslated4(recipeInstructions4)
-        }
-    })}
-
-    let recipeButton5 = document.getElementById('recipeButton5')
-	if(recipeButton5){
-    let recipeInstructions5 = buttonRecipe[5].instructions
-    recipeButton5.addEventListener('click', function() {
-		notTranslated.innerHTML = '<div class="loader"></div>'
-		translated.innerHTML = '<div class="loader"></div>'
-        displayUntranslated5(recipeInstructions5)
-        displayTranslated5(recipeInstructions5)
-    })}
-
-    
-}
-
-function displayUntranslated0(recipeInstructions0) {
-
-	notTranslated.innerHTML = "";
-
-    for(i=0; i<recipeInstructions0.length; i++) {
-        let instructions = document.createElement('p');
-        instructions.textContent = recipeInstructions0[i];
-        console.log(recipeInstructions0[i]);
+    for(i=0; i < ingredients.length; i++) {
+        let line = document.createElement('hr');
+        let ingredient = document.createElement('p');
+        ingredient.textContent = ingredients[i];
+        console.log(ingredients[i]);
         let notTranslated = document.querySelector('#notTranslated')
-        notTranslated.appendChild(instructions);
-        }
+        notTranslated.appendChild(line);
+        notTranslated.appendChild(ingredient);
+
+        displayTranslated(ingredient[i]);
+    }
 }
 
-function displayTranslated0(recipeInstructions0) {
 
-	translated.innerHTML = "";
+function displayTranslated(currentInstruction) {
+
+    translated.innerHTML = "";
 
         const options = {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
+                'X-RapidAPI-Key': 'ad3138270amsh5aed76a88a48950p17791cjsn8aab4633eda6',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
-            body: '{"text":"'+recipeInstructions0+'","source":"en","target":"es"}'
+            body: '{"text":"'+currentInstruction+'","source":"en","target":"es"}'
         };
         
         fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
@@ -169,200 +123,3 @@ function displayTranslated0(recipeInstructions0) {
             .catch(err => console.error(err));
     
 }
-
-function displayUntranslated1(recipeInstructions1) {
-
-	notTranslated.innerHTML = "";
-
-    for(i=0; i<recipeInstructions1.length; i++) {
-        let instructions = document.createElement('p');
-        instructions.textContent = recipeInstructions1[i];
-        console.log(recipeInstructions1[i]);
-        let notTranslated = document.querySelector('#notTranslated')
-        notTranslated.appendChild(instructions);
-        }
-}
-
-function displayTranslated1(recipeInstructions1) {
-
-	translated.innerHTML = "";
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
-                'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
-            },
-            body: '{"text":"'+recipeInstructions1+'","source":"en","target":"es"}'
-        };
-        
-        fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                let instructionsTrans = document.createElement('p');
-                instructionsTrans.textContent = response.text;
-                translated.appendChild(instructionsTrans);
-            })
-            .catch(err => console.error(err));
-    
-}
-
-function displayUntranslated2(recipeInstructions2) {
-
-	notTranslated.innerHTML = "";
-
-    for(i=0; i<recipeInstructions2.length; i++) {
-        let instructions = document.createElement('p');
-        instructions.textContent = recipeInstructions2[i];
-        console.log(recipeInstructions2[i]);
-        let notTranslated = document.querySelector('#notTranslated')
-        notTranslated.appendChild(instructions);
-        }
-}
-
-function displayTranslated2(recipeInstructions2) {
-
-	translated.innerHTML = "";
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
-                'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
-            },
-            body: '{"text":"'+recipeInstructions2+'","source":"en","target":"es"}'
-        };
-        
-        fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                let instructionsTrans = document.createElement('p');
-                instructionsTrans.textContent = response.text;
-                translated.appendChild(instructionsTrans);
-            })
-            .catch(err => console.error(err));
-    
-}
-
-function displayUntranslated3(recipeInstructions3) {
-
-	notTranslated.innerHTML = "";
-
-    for(i=0; i<recipeInstructions3.length; i++) {
-        let instructions = document.createElement('p');
-        instructions.textContent = recipeInstructions3[i];
-        console.log(recipeInstructions3[i]);
-        let notTranslated = document.querySelector('#notTranslated')
-        notTranslated.appendChild(instructions);
-        }
-}
-
-function displayTranslated3(recipeInstructions3) {
-
-	translated.innerHTML = "";
-
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
-                'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
-            },
-            body: '{"text":"'+recipeInstructions3+'","source":"en","target":"es"}'
-        };
-        
-        fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                let instructionsTrans = document.createElement('p');
-                instructionsTrans.textContent = response.text;
-                translated.appendChild(instructionsTrans);
-            })
-            .catch(err => console.error(err));
-    
-}
-
-function displayUntranslated4(recipeInstructions4) {
-	
-	notTranslated.innerHTML =""
-    
-	for(i=0; i<recipeInstructions4.length; i++) {
-        let instructions = document.createElement('p');
-        instructions.textContent = recipeInstructions4[i];
-        console.log(recipeInstructions4[i]);
-        let notTranslated = document.querySelector('#notTranslated')
-        notTranslated.appendChild(instructions);
-        }
-}
-
-function displayTranslated4(recipeInstructions4) {
-	
-	translated.innerHTML = ""
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
-                'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
-            },
-            body: '{"text":"'+recipeInstructions4+'","source":"en","target":"es"}'
-        };
-        
-        fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                let instructionsTrans = document.createElement('p');
-                instructionsTrans.textContent = response.text;
-                translated.appendChild(instructionsTrans);
-            })
-            .catch(err => console.error(err));
-    
-}
-
-function displayUntranslated5(recipeInstructions5) {
-
-	notTranslated.innerHTML = '';
-
-    for(i=0; i<recipeInstructions5.length; i++) {
-        let instructions = document.createElement('p');
-        instructions.textContent = recipeInstructions5[i];
-        console.log(recipeInstructions5[i]);
-        let notTranslated = document.querySelector('#notTranslated')
-        notTranslated.appendChild(instructions);
-        }
-}
-
-function displayTranslated5(recipeInstructions5) {
-
-	translated.innerHTML = '';
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
-                'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
-            },
-            body: '{"text":"'+recipeInstructions5+'","source":"en","target":"es"}'
-        };
-        
-        fetch('https://deepl-translator.p.rapidapi.com/translate/', options)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                let instructionsTrans = document.createElement('p');
-                instructionsTrans.textContent = response.text;
-                translated.appendChild(instructionsTrans);
-            })
-            .catch(err => console.error(err));
-    
-}
-
