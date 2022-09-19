@@ -152,7 +152,7 @@ function displayTranslated0(recipeInstructions0) {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'X-RapidAPI-Key': 'cd42ea5f80msh5ad9060337afeafp1218d9jsncd6f921b31a4',
+                'X-RapidAPI-Key': 'ad3138270amsh5aed76a88a48950p17791cjsn8aab4633eda6',
                 'X-RapidAPI-Host': 'deepl-translator.p.rapidapi.com'
             },
             body: '{"text":"'+recipeInstructions0+'","source":"en","target":"es"}'
