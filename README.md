@@ -18,7 +18,7 @@ As you arrive on the page, you will see a search box. At first, you should type 
 The end goal of this application is to manipulate the "DeepL Translator API" to translate the recipes into multiple languages that the user can choose based on their preferred language. 
 
 ## Screenshot
-[screenshot](./images/Screen%20Shot%202022-09-19%20at%203.29.09%20PM.png)
+![screenshot](./images/Screen%20Shot%202022-09-19%20at%203.29.09%20PM.png)
 
 ## Collaborators
 Karen Adkins:https://github.com/KarenAdkins84
